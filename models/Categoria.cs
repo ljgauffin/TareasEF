@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace EF.Models;
 
 public class Categoria
 {
+    // [Key]
     private Guid categoriaId;
     public Guid CategoriaId
     {
@@ -9,6 +12,8 @@ public class Categoria
         set { categoriaId = value; }
     }
 
+    // [Required]
+    // [MaxLength(150)]
     private string nombre;
     public string Nombre
     {
