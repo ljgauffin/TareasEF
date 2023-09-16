@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EF.Models;
 
@@ -27,7 +28,8 @@ public class Categoria
         get { return descripcion; }
         set { descripcion = value; }
     }
-
+    public int Peso { get; set; }
+    [JsonIgnore] //sirve para que al momento de cargar las Categorias no traiga al mismo tiempo las tareas
     public virtual ICollection<Tarea> Tareas { get; set; }
     
     

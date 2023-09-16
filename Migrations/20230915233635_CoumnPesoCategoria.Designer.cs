@@ -4,6 +4,7 @@ using EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity_Framework.Migrations
 {
     [DbContext(typeof(TareasContext))]
-    partial class TareasContextModelSnapshot : ModelSnapshot
+    [Migration("20230915233635_CoumnPesoCategoria")]
+    partial class CoumnPesoCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +32,7 @@ namespace Entity_Framework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -42,26 +46,6 @@ namespace Entity_Framework.Migrations
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categoria", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4831c"),
-                            Nombre = "Actividades pendientes",
-                            Peso = 20
-                        },
-                        new
-                        {
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4832c"),
-                            Nombre = "Actividades personales",
-                            Peso = 50
-                        },
-                        new
-                        {
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4833c"),
-                            Nombre = "Actividades del Hogar",
-                            Peso = 20
-                        });
                 });
 
             modelBuilder.Entity("EF.Models.Tarea", b =>
@@ -74,6 +58,7 @@ namespace Entity_Framework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreacion")
@@ -92,32 +77,6 @@ namespace Entity_Framework.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Tarea", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            TareaId = new Guid("b3a3096e-4274-4799-a843-380868d4834c"),
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4831c"),
-                            FechaCreacion = new DateTime(2023, 9, 15, 20, 52, 9, 438, DateTimeKind.Local).AddTicks(6498),
-                            PrioridadTarea = 1,
-                            Titulo = "Hacer tarea"
-                        },
-                        new
-                        {
-                            TareaId = new Guid("b3a3096e-4274-4799-a843-380868d4835c"),
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4832c"),
-                            FechaCreacion = new DateTime(2023, 9, 15, 20, 52, 9, 438, DateTimeKind.Local).AddTicks(6516),
-                            PrioridadTarea = 0,
-                            Titulo = "Ir al gym"
-                        },
-                        new
-                        {
-                            TareaId = new Guid("b3a3096e-4274-4799-a843-380868d4836c"),
-                            CategoriaId = new Guid("b3a3096e-4274-4799-a843-380868d4833c"),
-                            FechaCreacion = new DateTime(2023, 9, 15, 20, 52, 9, 438, DateTimeKind.Local).AddTicks(6519),
-                            PrioridadTarea = 2,
-                            Titulo = "Limpiar"
-                        });
                 });
 
             modelBuilder.Entity("EF.Models.Tarea", b =>
